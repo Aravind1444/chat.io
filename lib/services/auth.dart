@@ -50,4 +50,12 @@ class AuthMethods{
       }
     }
   }
+
+  void signOut() async{
+    try{
+      return await _auth.signOut();
+    }catch(e){
+
+    }
+  }
 }

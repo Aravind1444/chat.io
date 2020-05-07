@@ -1,5 +1,6 @@
 import 'package:chatio/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'chatroom.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -23,7 +24,9 @@ class _SignUpState extends State<SignUp> {
       });
       
       authMethods.signInWithEmailAndPassword(emailTextEditingController.text, passwordTextEditingController.text).then((val){
-        print("$val");
+        //print("${val.uid}");
+        
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatRoom()),);
       });
     }
   }
