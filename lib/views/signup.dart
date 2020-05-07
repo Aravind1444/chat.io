@@ -1,3 +1,4 @@
+import 'package:chatio/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -6,6 +7,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  bool isLoading = false;
+  AuthMethods authMethods = new AuthMethods();
 
   final formKey = GlobalKey<FormState>();
 
@@ -15,6 +18,13 @@ class _SignUpState extends State<SignUp> {
 
   signMeUP(){
     if(formKey.currentState.validate()){
+      setState(() {
+        isLoading = true;
+      });
+      
+      authMethods.signInWithEmailAndPassword(emailTextEditingController.text, passwordTextEditingController.text).then((val){
+        print("$val");
+      });
     }
   }
 
@@ -25,7 +35,11 @@ class _SignUpState extends State<SignUp> {
     final cyellow =  const Color(0xFFf7cb72);
 
     return Scaffold(
-        body: SingleChildScrollView(
+        body: isLoading ? Center(
+          child: Container(
+            child: CircularProgressIndicator(),
+          ),
+        ) : SingleChildScrollView(
           child: SafeArea(
             child: Container(
               color: Colors.white,
