@@ -1,3 +1,4 @@
+import 'package:chatio/helper/authenticate.dart';
 import 'package:chatio/views/signin.dart';
 import 'package:chatio/views/signup.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     Future.delayed(
       Duration(seconds: 3),
           () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => SignUp(),
+        Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => Authenticate(),
         ),
         );
       },

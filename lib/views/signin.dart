@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+
+  final Function toggle;
+  SignIn(this.toggle);
   @override
   _SignInState createState() => _SignInState();
 }
@@ -66,6 +69,7 @@ class _SignInState extends State<SignIn> {
                             ),
 
                             TextField(
+                              obscureText: true,
                               decoration: InputDecoration(
                                   hintText: "password", hintStyle: TextStyle(fontSize: 20, color: Colors.black26),
                                 focusedBorder: UnderlineInputBorder(
@@ -115,7 +119,13 @@ class _SignInState extends State<SignIn> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text("Don't have an account? ", style: TextStyle(fontSize: 15,color: Colors.black54),),
-                                Text("Register Now", style: TextStyle(fontSize: 15,color: Colors.black54,decoration: TextDecoration.underline, fontWeight: FontWeight.bold),),
+                                GestureDetector(
+                                  onTap: (){
+                                    widget.toggle();
+                                  },
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                        child: Text("Register Now", style: TextStyle(fontSize: 15,color: Colors.black54,decoration: TextDecoration.underline, fontWeight: FontWeight.bold),))),
                               ],
                             )
 

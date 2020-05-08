@@ -1,3 +1,4 @@
+import 'package:chatio/helper/authenticate.dart';
 import 'package:chatio/services/auth.dart';
 import 'package:chatio/views/signup.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _ChatRoomState extends State<ChatRoom> {
           GestureDetector(
             onTap: (){
               authMethods.signOut();
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUp(),));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Authenticate(),));
             },
             child: Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 15, 0),

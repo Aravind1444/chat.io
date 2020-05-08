@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'chatroom.dart';
 
 class SignUp extends StatefulWidget {
+
+  final Function toggle;
+  SignUp(this.toggle);
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -23,7 +26,7 @@ class _SignUpState extends State<SignUp> {
         isLoading = true;
       });
       
-      authMethods.signInWithEmailAndPassword(emailTextEditingController.text, passwordTextEditingController.text).then((val){
+      authMethods.signUpWithEmailAndPassword(emailTextEditingController.text, passwordTextEditingController.text).then((val){
         //print("${val.uid}");
         
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatRoom()),);
@@ -85,7 +88,7 @@ class _SignUpState extends State<SignUp> {
                                   children: <Widget>[
                                     TextFormField(
                                       validator: (val){
-                                        return val.isEmpty || val.length < 4 ? "Please provide a unique usernam!" : null;
+                                        return val.isEmpty || val.length < 4 ? "Please provide a unique username!" : null;
                                       },
                                       controller: userNameTextEditingController,
                                       decoration: InputDecoration(
@@ -189,7 +192,13 @@ class _SignUpState extends State<SignUp> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text("Already have an account? ", style: TextStyle(fontSize: 15,color: Colors.black54),),
-                                  Text("Sign In", style: TextStyle(fontSize: 15,color: Colors.black54,decoration: TextDecoration.underline, fontWeight: FontWeight.bold),),
+                                  GestureDetector(
+                                    onTap: (){
+                                      widget.toggle();
+                                    },
+                                      child: Padding(
+                                          padding:EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                          child: Text("Sign In", style: TextStyle(fontSize: 15,color: Colors.black54,decoration: TextDecoration.underline, fontWeight: FontWeight.bold),))),
                                 ],
                               )
 
